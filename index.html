@@ -3,53 +3,90 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MRAVI </title>
+  <title>Euclid Coaching</title>
   <style>
     body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f9f9f9; }
-    header { background: #4a2f0e; color: white; padding: 20px; text-align: center; }
+    header { background: #25D366; color: white; padding: 20px; text-align: center; }
     nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; }
-    section { padding: 20px; }
-    footer { background: #4a2f0e; color: white; text-align: center; padding: 10px; position: fixed; bottom: 0; width: 100%; }
+    nav { margin-top: 10px; }
+    section { max-width: 900px; margin: 30px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 0 8px rgba(0,0,0,0.1); }
+    h2, h3 { color: #25D366; }
+    ul { list-style-type: none; padding-left: 0; }
+    ul li { background: #e6f4ea; margin: 8px 0; padding: 10px; border-radius: 5px; }
+    footer { background: #eee; text-align: center; padding: 15px; margin-top: 40px; }
+    .btn {
+      display: inline-block;
+      background: #25D366;
+      color: white;
+      padding: 12px 25px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+    /* WhatsApp floating button */
+    .whatsapp-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25D366;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      text-align: center;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+      z-index: 1000;
+    }
+    .whatsapp-btn img {
+      width: 30px;
+      margin-top: 15px;
+    }
   </style>
 </head>
 <body>
-  <header>
-    <h1>MRAVI</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="services.html">Services</a>
-      <a href="booking.html">Book Pooja</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
 
-  <section>
-    <h2>Welcome to Digital Shraddh</h2>
-    <p>Online pooja and shraddh services at your convenience. Perform rituals with devotion from anywhere.</p>
-  </section>
+<header>
+  <h1>Euclid Coaching</h1>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#courses">Courses</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
 
-  <footer>
-    &copy; 2025 Digital Shraddh | All rights reserved
-  </footer>
-<!-- WhatsApp Button with Icon -->
-<a href="https://wa.me/919977692271
-  " target="_blank" style="
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: #25D366;
-  color: white;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  text-align: center;
-  font-size: 30px;
-  line-height: 60px;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
-  text-decoration: none;
-  z-index: 1000;
-">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width: 30px; height: 30px; margin-top: 15px;">
+<section id="hero" style="text-align:center; background:#e6f4ea;">
+  <h2>Welcome to Euclid Coaching</h2>
+  <p>Your journey to success starts here. Expert guidance for Board exams and other exams.</p>
+  <a href="#contact" class="btn">Enroll Now</a>
+</section>
+
+<section id="about">
+  <h3>About Us</h3>
+  <p>Euclid Coaching has been dedicated to empowering students since 2019. Experienced faculty, personalized coaching, and a proven track record of success.</p>
+</section>
+
+<section id="courses">
+  <h3>Our Courses</h3>
+  <ul>
+    <li></li>
+  </ul>
+</section>
+
+<section id="contact">
+  <h3>Contact Us</h3>
+  <p>Have questions or want to enroll? Reach out to us!</p>
+  <p>Call or WhatsApp at <a href="https://wa.me/919977692271" target="_blank">+91 98765 43210</a></p>
+  <!-- Or you can add a contact form here -->
+</section>
+
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/919876543210" target="_blank" class="whatsapp-btn" aria-label="Chat on WhatsApp">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" />
 </a>
+
+<footer>
+  &copy; 2025 Euclid Coaching. All rights reserved.
+</footer>
+
 </body>
 </html>

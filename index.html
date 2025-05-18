@@ -1,6 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
+<head<!DOCTYPE html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Euclid Coaching</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #f8fafc;
+      color: #1e293b;
+    }
+
+    header {
+      background: #1e40af;
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 3rem;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      margin-top: 10px;
+      color: #cbd5e1;
+    }
+
+    .banner {
+      background-image: url('https://source.unsplash.com/1600x600/?education,students');
+      background-size: cover;
+      background-position: center;
+      height: 300px;
+    }
+
+    section {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .courses {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .course {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+    }
+
+    .course h3 {
+      margin-bottom: 10px;
+      color: #1e40af;
+    }
+
+    .course p {
+      font-size: 0.95rem;
+    }
+
+    .book {
+      background: #1e40af;
+      color: white;
+      text-align: center;
+      padding: 50px 20px;
+      margin-top: 60px;
+    }
+
+    .book h2 {
+      margin-bottom: 20px;
+    }
+
+    .book a {
+      display: inline-block;
+      margin-top: 10px;
+      background: white;
+      color: #1e40af;
+      padding: 14px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .book a:hover {
+      background: #c7d2fe;
+    }
+
+    footer {
+      text-align: center;
+      background: #e0e7ff;
+      padding: 20px;
+      font-weight: 600;
+      color: #1e40af;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      .book h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Euclid Coaching</h1>
+    <p>Shaping Bright Minds for NEET, JEE & Foundations</p>
+  </header>
+
+  <div class="banner"></div>
+
+  <section>
+    <h2 style="text-align:center; color:#1e40af; margin-bottom:30px;">Our Courses</h2>
+    <div class="courses">
+      <div class="course">
+        <h3>NEET Preparation</h3>
+        <p>Comprehensive coaching for NEET with expert faculty and regular tests.</p>
+      </div>
+      <div class="course">
+        <h3>JEE (Main + Advanced)</h3>
+        <p>Crack IIT-JEE with smart concepts, problem-solving, and mock exams.</p>
+      </div>
+      <div class="course">
+        <h3>Foundation (8th - 10th)</h3>
+        <p>Strong base for science & math with Olympiad training & conceptual clarity.</p>
+      </div>
+      <div class="course">
+        <h3>Crash Courses</h3>
+        <p>Short-term intensive sessions before exams to boost scores quickly.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="book">
+    <h2>Book a Free Trial Class Today!</h2>
+    <a href="#booking">Book Now</a>
+  </div>
+
+  <section id="booking">
+    <h2 style="text-align:center; color:#1e40af; margin-bottom:20px;">Booking Form</h2>
+    <form action="https://formspree.io/f/yourformid" method="POST" style="max-width:500px; margin:0 auto; background:white; padding:30px; border-radius:12px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+      <input type="text" name="name" placeholder="Full Name" required style="width:100%; padding:12px; margin-bottom:15px; border:2px solid #1e40af; border-radius:8px;" />
+      <input type="email" name="email" placeholder="Email Address" required style="width:100%; padding:12px; margin-bottom:15px; border:2px solid #1e40af; border-radius:8px;" />
+      <input type="tel" name="phone" placeholder="Phone Number" required style="width:100%; padding:12px; margin-bottom:15px; border:2px solid #1e40af; border-radius:8px;" />
+      <select name="course" required style="width:100%; padding:12px; margin-bottom:15px; border:2px solid #1e40af; border-radius:8px;">
+        <option value="" disabled selected>Select Course</option>
+        <option value="neet">NEET</option>
+        <option value="jee">JEE</option>
+        <option value="foundation">Foundation</option>
+        <option value="crash">Crash Course</option>
+      </select>
+      <input type="date" name="date" required style="width:100%; padding:12px; margin-bottom:15px; border:2px solid #1e40af; border-radius:8px;" />
+      <button type="submit" style="width:100%; padding:14px; background:#1e40af; color:white; font-weight:bold; border:none; border-radius:8px;">Submit</button>
+    </form>
+  </section>
+
+  <footer>
+    © 2025 Euclid Coaching | Designed with passion for learners
+  </footer>
+
+</body>
+</html>
+  
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Euclid Coaching - Learn & Grow</title>

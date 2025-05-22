@@ -1,308 +1,626 @@
 <!DOCTYPE html>
 <html lang="en">
-<head<!DOCTYPE html>
-<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Euclid Coaching</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    body {
-      background-color: #f8fafc;
-      color: #1e293b;
-    }
-
-    header {
-      background: #1e40af;
-      color: white;
-      padding: 40px 20px;
-      text-align: center;
-    }
-
-    header h1 {
-      font-size: 3rem;
-    }
-
-    header p {
-      font-size: 1.2rem;
-      margin-top: 10px;
-      color: #cbd5e1;
-    }
-
-    .banner {
-      background-image: url('https://source.unsplash.com/1600x600/?education,students');
-      background-size: cover;
-      background-position: center;
-      height: 300px;
-    }
-
-    section {
-      max-width: 1000px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
-
-    .courses {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-    }
-
-    .course {
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.05);
-    }
-
-    .course h3 {
-      margin-bottom: 10px;
-      color: #1e40af;
-    }
-
-    .course p {
-      font-size: 0.95rem;
-    }
-
-    .book {
-      background: #1e40af;
-      color: white;
-      text-align: center;
-      padding: 50px 20px;
-      margin-top: 60px;
-    }
-
-    .book h2 {
-      margin-bottom: 20px;
-    }
-
-    .book a {
-      display: inline-block;
-      margin-top: 10px;
-      background: white;
-      color: #1e40af;
-      padding: 14px 28px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-
-    .book a:hover {
-      background: #c7d2fe;
-    }
-
-    footer {
-      text-align: center;
-      background: #e0e7ff;
-      padding: 20px;
-      font-weight: 600;
-      color: #1e40af;
-    }
-
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 2rem;
-      }
-      .book h2 {
-        font-size: 1.5rem;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SocialConnect - Like Facebook</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f0f2f5;
+            color: #050505;
+        }
+        
+        /* Header/Navbar */
+        .navbar {
+            background-color: #ffffff;
+            height: 56px;
+            padding: 0 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #1877f2;
+        }
+        
+        .search-bar {
+            background-color: #f0f2f5;
+            border-radius: 50px;
+            padding: 8px 12px;
+            display: flex;
+            align-items: center;
+            width: 240px;
+        }
+        
+        .search-bar input {
+            background: transparent;
+            border: none;
+            outline: none;
+            margin-left: 8px;
+            width: 100%;
+        }
+        
+        .nav-icons {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .nav-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        
+        .nav-icon:hover {
+            background-color: #f0f2f5;
+        }
+        
+        .profile-pic {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        /* Main Content */
+        .container {
+            display: flex;
+            padding-top: 56px;
+        }
+        
+        /* Left Sidebar */
+        .left-sidebar {
+            width: 360px;
+            padding: 20px;
+            position: fixed;
+            height: calc(100vh - 56px);
+            overflow-y: auto;
+        }
+        
+        .sidebar-item {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        
+        .sidebar-item:hover {
+            background-color: #e4e6e9;
+        }
+        
+        .sidebar-item i {
+            font-size: 1.5rem;
+            margin-right: 12px;
+            color: #1877f2;
+        }
+        
+        .sidebar-item img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 12px;
+        }
+        
+        .shortcuts {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid #ddd;
+        }
+        
+        .shortcuts h3 {
+            color: #65676b;
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+        }
+        
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin: 0 360px;
+            padding: 20px;
+        }
+        
+        .create-post {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 12px 16px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            margin-bottom: 16px;
+        }
+        
+        .post-input {
+            display: flex;
+            align-items: center;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .post-input img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 8px;
+        }
+        
+        .post-input input {
+            flex: 1;
+            background-color: #f0f2f5;
+            border: none;
+            border-radius: 50px;
+            padding: 10px 12px;
+            outline: none;
+        }
+        
+        .post-options {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 12px;
+        }
+        
+        .post-option {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        
+        .post-option:hover {
+            background-color: #f0f2f5;
+        }
+        
+        .post-option i {
+            margin-right: 8px;
+            font-size: 1.2rem;
+        }
+        
+        .live-video i {
+            color: #f3425f;
+        }
+        
+        .photo-video i {
+            color: #45bd62;
+        }
+        
+        .feeling i {
+            color: #f7b928;
+        }
+        
+        /* Post */
+        .post {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 12px 16px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            margin-bottom: 16px;
+        }
+        
+        .post-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        
+        .post-header img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 8px;
+        }
+        
+        .post-user {
+            font-weight: 600;
+        }
+        
+        .post-time {
+            color: #65676b;
+            font-size: 0.9rem;
+        }
+        
+        .post-content {
+            margin-bottom: 12px;
+        }
+        
+        .post-image {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+        
+        .post-stats {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #ddd;
+            color: #65676b;
+            font-size: 0.9rem;
+        }
+        
+        .post-actions {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 8px;
+        }
+        
+        .post-action {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px;
+            border-radius: 8px;
+            cursor: pointer;
+            flex: 1;
+        }
+        
+        .post-action:hover {
+            background-color: #f0f2f5;
+        }
+        
+        .post-action i {
+            margin-right: 8px;
+            font-size: 1.2rem;
+        }
+        
+        /* Right Sidebar */
+        .right-sidebar {
+            width: 360px;
+            padding: 20px;
+            position: fixed;
+            right: 0;
+            height: calc(100vh - 56px);
+            overflow-y: auto;
+        }
+        
+        .contacts-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+        
+        .contacts-header h3 {
+            color: #65676b;
+        }
+        
+        .contact {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        
+        .contact:hover {
+            background-color: #e4e6e9;
+        }
+        
+        .contact img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 12px;
+        }
+        
+        .online-badge {
+            width: 10px;
+            height: 10px;
+            background-color: #31a24c;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 0;
+            right: 10px;
+            border: 2px solid #ffffff;
+        }
+        
+        .avatar-container {
+            position: relative;
+        }
+        
+        @media (max-width: 1200px) {
+            .left-sidebar {
+                width: 280px;
+            }
+            .right-sidebar {
+                width: 280px;
+            }
+            .main-content {
+                margin: 0 280px;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .right-sidebar {
+                display: none;
+            }
+            .main-content {
+                margin-right: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .left-sidebar {
+                display: none;
+            }
+            .main-content {
+                margin-left: 0;
+            }
+            .search-bar {
+                display: none;
+            }
+        }
+    </style>
 </head>
 <body>
-
-  <header>
-    <h1>Euclid Coaching</h1>
-    <p>Shaping Bright Minds for NEET, JEE & Foundations</p>
-  </header>
-
-  <div class="banner"></div>
-
-  <section>
-    <h2 style="text-align:center; color:#1e40af; margin-bottom:30px;">Our Courses</h2>
-    <div class="courses">
-      <div class="course">
-        <h3>NEET Preparation</h3>
-        <p>Comprehensive coaching for NEET with expert faculty and regular tests.</p>
-      </div>
-      <div class="course">
-        <h3>JEE (Main + Advanced)</h3>
-        <p>Crack IIT-JEE with smart concepts, problem-solving, and mock exams.</p>
-      </div>
-      <div class="course">
-        <h3>Foundation (8th - 10th)</h3>
-        <p>Strong base for science & math with Olympiad training & conceptual clarity.</p>
-      </div>
-      <div class="course">
-        <h3>Crash Courses</h3>
-        <p>Short-term intensive sessions before exams to boost scores quickly.</p>
-      </div>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">SocialConnect</div>
+        
+        <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search SocialConnect">
+        </div>
+        
+        <div class="nav-icons">
+            <div class="nav-icon">
+                <i class="fas fa-home"></i>
+            </div>
+            <div class="nav-icon">
+                <i class="fas fa-tv"></i>
+            </div>
+            <div class="nav-icon">
+                <i class="fas fa-store"></i>
+            </div>
+            <div class="nav-icon">
+                <i class="fas fa-users"></i>
+            </div>
+            <div class="nav-icon">
+                <i class="fas fa-bell"></i>
+            </div>
+            <div class="nav-icon">
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Profile" class="profile-pic">
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Left Sidebar -->
+        <div class="left-sidebar">
+            <div class="sidebar-item">
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Profile">
+                <span>Your Name</span>
+            </div>
+            <div class="sidebar-item">
+                <i class="fas fa-user-friends"></i>
+                <span>Friends</span>
+            </div>
+            <div class="sidebar-item">
+                <i class="fas fa-flag"></i>
+                <span>Pages</span>
+            </div>
+            <div class="sidebar-item">
+                <i class="fas fa-bookmark"></i>
+                <span>Saved</span>
+            </div>
+            <div class="sidebar-item">
+                <i class="fas fa-users"></i>
+                <span>Groups</span>
+            </div>
+            <div class="sidebar-item">
+                <i class="fas fa-store"></i>
+                <span>Marketplace</span>
+            </div>
+            <div class="sidebar-item">
+                <i class="fas fa-tv"></i>
+                <span>Watch</span>
+            </div>
+            <div class="sidebar-item">
+                <i class="fas fa-calendar"></i>
+                <span>Events</span>
+            </div>
+            <div class="sidebar-item">
+                <i class="fas fa-history"></i>
+                <span>Memories</span>
+            </div>
+            
+            <div class="shortcuts">
+                <h3>Your Shortcuts</h3>
+                <div class="sidebar-item">
+                    <img src="https://picsum.photos/100" alt="Group">
+                    <span>Programming Group</span>
+                </div>
+                <div class="sidebar-item">
+                    <img src="https://picsum.photos/101" alt="Group">
+                    <span>Travel Enthusiasts</span>
+                </div>
+                <div class="sidebar-item">
+                    <img src="https://picsum.photos/102" alt="Group">
+                    <span>Cooking Club</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Feed -->
+        <div class="main-content">
+            <!-- Create Post -->
+            <div class="create-post">
+                <div class="post-input">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Profile">
+                    <input type="text" placeholder="What's on your mind?">
+                </div>
+                <div class="post-options">
+                    <div class="post-option live-video">
+                        <i class="fas fa-video"></i>
+                        <span>Live Video</span>
+                    </div>
+                    <div class="post-option photo-video">
+                        <i class="fas fa-photo-video"></i>
+                        <span>Photo/Video</span>
+                    </div>
+                    <div class="post-option feeling">
+                        <i class="fas fa-smile"></i>
+                        <span>Feeling/Activity</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Posts -->
+            <div class="post">
+                <div class="post-header">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Profile">
+                    <div>
+                        <div class="post-user">Sarah Johnson</div>
+                        <div class="post-time">Yesterday at 3:45 PM · <i class="fas fa-globe-americas"></i></div>
+                    </div>
+                </div>
+                <div class="post-content">
+                    Just visited this amazing place! The views were breathtaking. Can't wait to go back again soon!
+                </div>
+                <img src="https://picsum.photos/800/400" alt="Post" class="post-image">
+                <div class="post-stats">
+                    <span><i class="fas fa-thumbs-up"></i> 245</span>
+                    <span>48 comments · 12 shares</span>
+                </div>
+                <div class="post-actions">
+                    <div class="post-action">
+                        <i class="fas fa-thumbs-up"></i>
+                        <span>Like</span>
+                    </div>
+                    <div class="post-action">
+                        <i class="fas fa-comment"></i>
+                        <span>Comment</span>
+                    </div>
+                    <div class="post-action">
+                        <i class="fas fa-share"></i>
+                        <span>Share</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post">
+                <div class="post-header">
+                    <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Profile">
+                    <div>
+                        <div class="post-user">Mike Peterson</div>
+                        <div class="post-time">2 hrs ago · <i class="fas fa-user-friends"></i></div>
+                    </div>
+                </div>
+                <div class="post-content">
+                    Check out this new programming tutorial I made! Let me know what you think in the comments.
+                </div>
+                <img src="https://picsum.photos/800/401" alt="Post" class="post-image">
+                <div class="post-stats">
+                    <span><i class="fas fa-thumbs-up"></i> 189</span>
+                    <span>32 comments · 5 shares</span>
+                </div>
+                <div class="post-actions">
+                    <div class="post-action">
+                        <i class="fas fa-thumbs-up"></i>
+                        <span>Like</span>
+                    </div>
+                    <div class="post-action">
+                        <i class="fas fa-comment"></i>
+                        <span>Comment</span>
+                    </div>
+                    <div class="post-action">
+                        <i class="fas fa-share"></i>
+                        <span>Share</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Right Sidebar -->
+        <div class="right-sidebar">
+            <div class="contacts-header">
+                <h3>Contacts</h3>
+                <div>
+                    <i class="fas fa-video"></i>
+                    <i class="fas fa-search"></i>
+                    <i class="fas fa-ellipsis-h"></i>
+                </div>
+            </div>
+            
+            <div class="contact">
+                <div class="avatar-container">
+                    <img src="https://randomuser.me/api/portraits/women/12.jpg" alt="Profile">
+                    <div class="online-badge"></div>
+                </div>
+                <span>Emily Davis</span>
+            </div>
+            
+            <div class="contact">
+                <div class="avatar-container">
+                    <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Profile">
+                    <div class="online-badge"></div>
+                </div>
+                <span>Robert Wilson</span>
+            </div>
+            
+            <div class="contact">
+                <div class="avatar-container">
+                    <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Profile">
+                </div>
+                <span>Jennifer Brown</span>
+            </div>
+            
+            <div class="contact">
+                <div class="avatar-container">
+                    <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Profile">
+                    <div class="online-badge"></div>
+                </div>
+                <span>David Miller</span>
+            </div>
+            
+            <div class="contact">
+                <div class="avatar-container">
+                    <img src="https://randomuser.me/api/portraits/women/55.jpg" alt="Profile">
+                </div>
+                <span>Jessica Garcia</span>
+            </div>
+        </div>
     </div>
-  </section>
-
-  <div class="book">
-    <h2>Book a Free Trial Class Today!</h2>
-    <a href="#booking">Book Now</a>
-  </div>
-
-  <section id="booking">
-    <h2 style="text-align:center; color:#1e40af; margin-bottom:20px;">Booking Form</h2>
-    <form action="https://formspree.io/f/yourformid" method="POST" style="max-width:500px; margin:0 auto; background:white; padding:30px; border-radius:12px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
-      <input type="text" name="name" placeholder="Full Name" required style="width:100%; padding:12px; margin-bottom:15px; border:2px solid #1e40af; border-radius:8px;" />
-      <input type="email" name="email" placeholder="Email Address" required style="width:100%; padding:12px; margin-bottom:15px; border:2px solid #1e40af; border-radius:8px;" />
-      <input type="tel" name="phone" placeholder="Phone Number" required style="width:100%; padding:12px; margin-bottom:15px; border:2px solid #1e40af; border-radius:8px;" />
-      <select name="course" required style="width:100%; padding:12px; margin-bottom:15px; border:2px solid #1e40af; border-radius:8px;">
-        <option value="" disabled selected>Select Course</option>
-        <option value="neet">NEET</option>
-        <option value="jee">JEE</option>
-        <option value="foundation">Foundation</option>
-        <option value="crash">Crash Course</option>
-      </select>
-      <input type="date" name="date" required style="width:100%; padding:12px; margin-bottom:15px; border:2px solid #1e40af; border-radius:8px;" />
-      <button type="submit" style="width:100%; padding:14px; background:#1e40af; color:white; font-weight:bold; border:none; border-radius:8px;">Submit</button>
-    </form>
-  </section>
-
-  <footer>
-    © 2025 Euclid Coaching | Designed with passion for learners
-  </footer>
-
-</body>
-</html>
-  
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Euclid Coaching - Learn & Grow</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f4f7fc;
-      color: #333;
-    }
-    header {
-      background: #1e40af;
-      color: white;
-      padding: 30px 20px;
-      text-align: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2.8rem;
-      letter-spacing: 3px;
-    }
-    header p {
-      margin-top: 8px;
-      font-size: 1.2rem;
-      font-weight: 500;
-      color: #cbd5e1;
-    }
-    main {
-      max-width: 600px;
-      margin: 40px auto;
-      background: white;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 8px 16px rgba(30, 64, 175, 0.15);
-    }
-    main h2 {
-      text-align: center;
-      color: #1e40af;
-      margin-bottom: 30px;
-      font-weight: 700;
-      font-size: 1.8rem;
-    }
-    form {
-      display: flex;
-      flex-direction: column;
-    }
-    input, select {
-      padding: 14px 15px;
-      margin-bottom: 20px;
-      border: 2px solid #1e40af;
-      border-radius: 8px;
-      font-size: 1rem;
-      transition: border-color 0.3s ease;
-    }
-    input:focus, select:focus {
-      outline: none;
-      border-color: #2563eb;
-      box-shadow: 0 0 8px rgba(37, 99, 235, 0.5);
-    }
-    button {
-      background: #1e40af;
-      color: white;
-      border: none;
-      padding: 16px;
-      border-radius: 8px;
-      font-size: 1.2rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-    button:hover {
-      background: #2563eb;
-    }
-    footer {
-      text-align: center;
-      padding: 20px 0;
-      background: #e0e7ff;
-      color: #1e40af;
-      font-weight: 600;
-      margin-top: 60px;
-    }
-    @media (max-width: 650px) {
-      main {
-        margin: 20px;
-        padding: 20px;
-      }
-      header h1 {
-        font-size: 1.8rem;
-      }
-      button {
-        font-size: 1rem;
-        padding: 12px;
-      }
-    }
-  </style>
-</head>
-<body>
-
-<header>
-  <h1>Euclid Coaching</h1>
-  <p>Unlock Your Potential with Expert Guidance</p>
-</header>
-
-<main>
-  <h2>Book Your Free Trial Session</h2>
-  <form action="#" method="POST">
-    <input type="text" name="name" placeholder="Full Name" required />
-    <input type="email" name="email" placeholder="Email Address" required />
-    <input type="tel" name="phone" placeholder="Phone Number" required />
-    <select name="course" required>
-      <option value="" disabled selected>Select Course</option>
-      <option value="neet">NEET Preparation</option>
-      <option value="jee">JEE Mains/Advanced</option>
-      <option value="foundation">Foundation (8th-10th)</option>
-      <option value="others">Other</option>
-    </select>
-    <input type="date" name="date" required />
-    <button type="submit">Book Now</button>
-  </form>
-</main>
-
-<footer>
-  © 2025 Euclid Coaching. All rights reserved.
-</footer>
-
+    
+    <script>
+        // Simple JavaScript for demonstration
+        document.querySelectorAll('.post-action').forEach(action => {
+            action.addEventListener('click', function() {
+                const actionType = this.querySelector('span').textContent;
+                alert(`You clicked ${actionType}`);
+            });
+        });
+        
+        document.querySelectorAll('.post-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const optionType = this.querySelector('span').textContent;
+                alert(`Create post with ${optionType}`);
+            });
+        });
+    </script>
 </body>
 </html>

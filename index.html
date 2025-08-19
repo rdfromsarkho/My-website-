@@ -1,626 +1,232 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SocialConnect - Like Facebook</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: #f0f2f5;
-            color: #050505;
-        }
-        
-        /* Header/Navbar */
-        .navbar {
-            background-color: #ffffff;
-            height: 56px;
-            padding: 0 16px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-        }
-        
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #1877f2;
-        }
-        
-        .search-bar {
-            background-color: #f0f2f5;
-            border-radius: 50px;
-            padding: 8px 12px;
-            display: flex;
-            align-items: center;
-            width: 240px;
-        }
-        
-        .search-bar input {
-            background: transparent;
-            border: none;
-            outline: none;
-            margin-left: 8px;
-            width: 100%;
-        }
-        
-        .nav-icons {
-            display: flex;
-            gap: 8px;
-        }
-        
-        .nav-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-        }
-        
-        .nav-icon:hover {
-            background-color: #f0f2f5;
-        }
-        
-        .profile-pic {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-        
-        /* Main Content */
-        .container {
-            display: flex;
-            padding-top: 56px;
-        }
-        
-        /* Left Sidebar */
-        .left-sidebar {
-            width: 360px;
-            padding: 20px;
-            position: fixed;
-            height: calc(100vh - 56px);
-            overflow-y: auto;
-        }
-        
-        .sidebar-item {
-            display: flex;
-            align-items: center;
-            padding: 8px;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-        
-        .sidebar-item:hover {
-            background-color: #e4e6e9;
-        }
-        
-        .sidebar-item i {
-            font-size: 1.5rem;
-            margin-right: 12px;
-            color: #1877f2;
-        }
-        
-        .sidebar-item img {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-right: 12px;
-        }
-        
-        .shortcuts {
-            margin-top: 16px;
-            padding-top: 16px;
-            border-top: 1px solid #ddd;
-        }
-        
-        .shortcuts h3 {
-            color: #65676b;
-            font-size: 1.1rem;
-            margin-bottom: 12px;
-        }
-        
-        /* Main Content */
-        .main-content {
-            flex: 1;
-            margin: 0 360px;
-            padding: 20px;
-        }
-        
-        .create-post {
-            background-color: #ffffff;
-            border-radius: 8px;
-            padding: 12px 16px;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-            margin-bottom: 16px;
-        }
-        
-        .post-input {
-            display: flex;
-            align-items: center;
-            padding-bottom: 12px;
-            border-bottom: 1px solid #ddd;
-        }
-        
-        .post-input img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-right: 8px;
-        }
-        
-        .post-input input {
-            flex: 1;
-            background-color: #f0f2f5;
-            border: none;
-            border-radius: 50px;
-            padding: 10px 12px;
-            outline: none;
-        }
-        
-        .post-options {
-            display: flex;
-            justify-content: space-between;
-            padding-top: 12px;
-        }
-        
-        .post-option {
-            display: flex;
-            align-items: center;
-            padding: 8px;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-        
-        .post-option:hover {
-            background-color: #f0f2f5;
-        }
-        
-        .post-option i {
-            margin-right: 8px;
-            font-size: 1.2rem;
-        }
-        
-        .live-video i {
-            color: #f3425f;
-        }
-        
-        .photo-video i {
-            color: #45bd62;
-        }
-        
-        .feeling i {
-            color: #f7b928;
-        }
-        
-        /* Post */
-        .post {
-            background-color: #ffffff;
-            border-radius: 8px;
-            padding: 12px 16px;
-            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-            margin-bottom: 16px;
-        }
-        
-        .post-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 12px;
-        }
-        
-        .post-header img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-right: 8px;
-        }
-        
-        .post-user {
-            font-weight: 600;
-        }
-        
-        .post-time {
-            color: #65676b;
-            font-size: 0.9rem;
-        }
-        
-        .post-content {
-            margin-bottom: 12px;
-        }
-        
-        .post-image {
-            width: 100%;
-            border-radius: 8px;
-            margin-bottom: 12px;
-        }
-        
-        .post-stats {
-            display: flex;
-            justify-content: space-between;
-            padding: 8px 0;
-            border-bottom: 1px solid #ddd;
-            color: #65676b;
-            font-size: 0.9rem;
-        }
-        
-        .post-actions {
-            display: flex;
-            justify-content: space-between;
-            padding-top: 8px;
-        }
-        
-        .post-action {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 8px;
-            border-radius: 8px;
-            cursor: pointer;
-            flex: 1;
-        }
-        
-        .post-action:hover {
-            background-color: #f0f2f5;
-        }
-        
-        .post-action i {
-            margin-right: 8px;
-            font-size: 1.2rem;
-        }
-        
-        /* Right Sidebar */
-        .right-sidebar {
-            width: 360px;
-            padding: 20px;
-            position: fixed;
-            right: 0;
-            height: calc(100vh - 56px);
-            overflow-y: auto;
-        }
-        
-        .contacts-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 16px;
-        }
-        
-        .contacts-header h3 {
-            color: #65676b;
-        }
-        
-        .contact {
-            display: flex;
-            align-items: center;
-            padding: 8px;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-        
-        .contact:hover {
-            background-color: #e4e6e9;
-        }
-        
-        .contact img {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-right: 12px;
-        }
-        
-        .online-badge {
-            width: 10px;
-            height: 10px;
-            background-color: #31a24c;
-            border-radius: 50%;
-            position: absolute;
-            bottom: 0;
-            right: 10px;
-            border: 2px solid #ffffff;
-        }
-        
-        .avatar-container {
-            position: relative;
-        }
-        
-        @media (max-width: 1200px) {
-            .left-sidebar {
-                width: 280px;
-            }
-            .right-sidebar {
-                width: 280px;
-            }
-            .main-content {
-                margin: 0 280px;
-            }
-        }
-        
-        @media (max-width: 992px) {
-            .right-sidebar {
-                display: none;
-            }
-            .main-content {
-                margin-right: 0;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .left-sidebar {
-                display: none;
-            }
-            .main-content {
-                margin-left: 0;
-            }
-            .search-bar {
-                display: none;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ravi • Professional Services</title>
+  <meta name="description" content="Affordable and reliable services — fast delivery, clear communication, and quality work." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b0d10;--surface:#111318;--card:#161922;--text:#e7ebf3;--muted:#a6b0c3;
+      --accent:#4f8cff;--ring:rgba(79,140,255,.35);--border:#232838
+    }
+    *{box-sizing:border-box}html,body{margin:0;padding:0}
+    body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(180deg,#0b0d10 0%,#0e1016 100%);color:var(--text);line-height:1.6}
+    a{color:var(--text);text-decoration:none}img{max-width:100%;display:block}
+    .navbar{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:16px 20px;background:rgba(11,13,16,.6);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+    .brand{font-weight:800;letter-spacing:.3px;font-size:1.1rem}.brand span{color:var(--accent)}
+    .navbar nav{display:flex;gap:16px;align-items:center}.navbar nav a{opacity:.85}.navbar nav a:hover{opacity:1}
+    .navbar .cta{padding:8px 14px;border:1px solid var(--border);border-radius:10px}
+    .menu{display:none;background:none;border:0;cursor:pointer}.menu span{display:block;width:22px;height:2px;background:var(--text);margin:4px 0}
+    .hero{display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:center;padding:48px 20px;max-width:1100px;margin:0 auto}
+    .hero h1{font-size:clamp(2rem,4vw,3rem);line-height:1.1;margin:0 0 12px}
+    .hero p{color:var(--muted);margin:0 0 18px}
+    .hero-actions{display:flex;gap:12px;margin:8px 0 16px}
+    .btn{display:inline-block;padding:12px 16px;border-radius:12px;border:1px solid var(--border)}
+    .btn.primary{background:var(--accent);color:#05060a;font-weight:700;border-color:transparent;box-shadow:0 0 0 6px var(--ring)}
+    .btn.ghost{background:transparent}
+    .points{display:flex;gap:16px;list-style:none;padding:0;margin:16px 0 0;color:var(--muted);flex-wrap:wrap}
+    .section{max-width:1100px;margin:24px auto;padding:36px 20px}
+    .section.alt{background:linear-gradient(180deg,#0d1016,#0b0d10);border-block:1px solid var(--border)}
+    .section h2{font-size:1.6rem;margin:0 0 18px}
+    .grid{display:grid;gap:16px}
+    .cards{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+    .card{background:var(--card);border:1px solid var(--border);padding:18px;border-radius:16px}
+    .card h3{margin:4px 0 8px}.card .price{margin-top:12px;font-weight:700;color:var(--accent)}
+    .gallery{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+    .gallery figure{margin:0;background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+    .gallery figcaption{padding:10px 12px;color:var(--muted);font-size:.95rem}
+    .about-wrap{display:grid;grid-template-columns:90px 1fr;gap:16px;align-items:center}
+    .avatar{width:90px;height:90px;border-radius:50%;border:2px solid var(--border);background:#0a0d14;padding:6px}
+    .badges{display:flex;gap:10px;list-style:none;padding:0;margin:16px 0 0;flex-wrap:wrap}
+    .badges li{background:var(--surface);border:1px solid var(--border);padding:8px 12px;border-radius:999px;color:var(--muted)}
+    .contact .contact-wrap{display:grid;grid-template-columns:1.2fr 1fr;gap:16px}
+    .contact form{background:var(--card);border:1px solid var(--border);padding:18px;border-radius:16px}
+    .contact label{display:block;font-weight:600;margin-bottom:8px}
+    .contact input,.contact textarea{width:100%;background:#0a0d14;border:1px solid var(--border);color:var(--text);padding:10px 12px;border-radius:10px;margin-top:6px;font:inherit}
+    .contact .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .muted{color:var(--muted);font-size:.95rem}
+    .footer{display:flex;align-items:center;justify-content:space-between;max-width:1100px;margin:10px auto 40px;padding:0 20px;color:var(--muted)}
+    @media (max-width:800px){
+      .hero{grid-template-columns:1fr}
+      .contact .contact-wrap{grid-template-columns:1fr}
+      .navbar nav{display:none}.menu{display:block}
+      .navbar.open nav{display:flex;flex-direction:column;position:absolute;top:60px;right:12px;background:var(--surface);border:1px solid var(--border);padding:10px;border-radius:12px}
+    }
+  </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="logo">SocialConnect</div>
-        
-        <div class="search-bar">
-            <i class="fas fa-search"></i>
-            <input type="text" placeholder="Search SocialConnect">
-        </div>
-        
-        <div class="nav-icons">
-            <div class="nav-icon">
-                <i class="fas fa-home"></i>
-            </div>
-            <div class="nav-icon">
-                <i class="fas fa-tv"></i>
-            </div>
-            <div class="nav-icon">
-                <i class="fas fa-store"></i>
-            </div>
-            <div class="nav-icon">
-                <i class="fas fa-users"></i>
-            </div>
-            <div class="nav-icon">
-                <i class="fas fa-bell"></i>
-            </div>
-            <div class="nav-icon">
-                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Profile" class="profile-pic">
-            </div>
-        </div>
+  <header class="navbar">
+    <a class="brand" href="#top">Ravi<span>Dhakad</span></a>
+    <nav>
+      <a href="#services">Services</a>
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a class="cta" href="https://wa.me/919999999999" target="_blank" rel="noopener">WhatsApp</a>
     </nav>
-    
-    <!-- Main Content -->
-    <div class="container">
-        <!-- Left Sidebar -->
-        <div class="left-sidebar">
-            <div class="sidebar-item">
-                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Profile">
-                <span>Your Name</span>
-            </div>
-            <div class="sidebar-item">
-                <i class="fas fa-user-friends"></i>
-                <span>Friends</span>
-            </div>
-            <div class="sidebar-item">
-                <i class="fas fa-flag"></i>
-                <span>Pages</span>
-            </div>
-            <div class="sidebar-item">
-                <i class="fas fa-bookmark"></i>
-                <span>Saved</span>
-            </div>
-            <div class="sidebar-item">
-                <i class="fas fa-users"></i>
-                <span>Groups</span>
-            </div>
-            <div class="sidebar-item">
-                <i class="fas fa-store"></i>
-                <span>Marketplace</span>
-            </div>
-            <div class="sidebar-item">
-                <i class="fas fa-tv"></i>
-                <span>Watch</span>
-            </div>
-            <div class="sidebar-item">
-                <i class="fas fa-calendar"></i>
-                <span>Events</span>
-            </div>
-            <div class="sidebar-item">
-                <i class="fas fa-history"></i>
-                <span>Memories</span>
-            </div>
-            
-            <div class="shortcuts">
-                <h3>Your Shortcuts</h3>
-                <div class="sidebar-item">
-                    <img src="https://picsum.photos/100" alt="Group">
-                    <span>Programming Group</span>
-                </div>
-                <div class="sidebar-item">
-                    <img src="https://picsum.photos/101" alt="Group">
-                    <span>Travel Enthusiasts</span>
-                </div>
-                <div class="sidebar-item">
-                    <img src="https://picsum.photos/102" alt="Group">
-                    <span>Cooking Club</span>
-                </div>
-            </div>
+    <button class="menu" aria-label="Toggle menu" onclick="document.querySelector('.navbar').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-text">
+        <h1>Get work done — fast & clean.</h1>
+        <p>I help individuals and small businesses with <strong>websites</strong>, <strong>apps</strong>, and <strong>digital setup</strong>. Clear pricing, on-time delivery.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#contact">Get a free quote</a>
+          <a class="btn ghost" href="#work">See recent work</a>
         </div>
-        
-        <!-- Main Feed -->
-        <div class="main-content">
-            <!-- Create Post -->
-            <div class="create-post">
-                <div class="post-input">
-                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Profile">
-                    <input type="text" placeholder="What's on your mind?">
-                </div>
-                <div class="post-options">
-                    <div class="post-option live-video">
-                        <i class="fas fa-video"></i>
-                        <span>Live Video</span>
-                    </div>
-                    <div class="post-option photo-video">
-                        <i class="fas fa-photo-video"></i>
-                        <span>Photo/Video</span>
-                    </div>
-                    <div class="post-option feeling">
-                        <i class="fas fa-smile"></i>
-                        <span>Feeling/Activity</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Posts -->
-            <div class="post">
-                <div class="post-header">
-                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Profile">
-                    <div>
-                        <div class="post-user">Sarah Johnson</div>
-                        <div class="post-time">Yesterday at 3:45 PM · <i class="fas fa-globe-americas"></i></div>
-                    </div>
-                </div>
-                <div class="post-content">
-                    Just visited this amazing place! The views were breathtaking. Can't wait to go back again soon!
-                </div>
-                <img src="https://picsum.photos/800/400" alt="Post" class="post-image">
-                <div class="post-stats">
-                    <span><i class="fas fa-thumbs-up"></i> 245</span>
-                    <span>48 comments · 12 shares</span>
-                </div>
-                <div class="post-actions">
-                    <div class="post-action">
-                        <i class="fas fa-thumbs-up"></i>
-                        <span>Like</span>
-                    </div>
-                    <div class="post-action">
-                        <i class="fas fa-comment"></i>
-                        <span>Comment</span>
-                    </div>
-                    <div class="post-action">
-                        <i class="fas fa-share"></i>
-                        <span>Share</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="post">
-                <div class="post-header">
-                    <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Profile">
-                    <div>
-                        <div class="post-user">Mike Peterson</div>
-                        <div class="post-time">2 hrs ago · <i class="fas fa-user-friends"></i></div>
-                    </div>
-                </div>
-                <div class="post-content">
-                    Check out this new programming tutorial I made! Let me know what you think in the comments.
-                </div>
-                <img src="https://picsum.photos/800/401" alt="Post" class="post-image">
-                <div class="post-stats">
-                    <span><i class="fas fa-thumbs-up"></i> 189</span>
-                    <span>32 comments · 5 shares</span>
-                </div>
-                <div class="post-actions">
-                    <div class="post-action">
-                        <i class="fas fa-thumbs-up"></i>
-                        <span>Like</span>
-                    </div>
-                    <div class="post-action">
-                        <i class="fas fa-comment"></i>
-                        <span>Comment</span>
-                    </div>
-                    <div class="post-action">
-                        <i class="fas fa-share"></i>
-                        <span>Share</span>
-                    </div>
-                </div>
-            </div>
+        <ul class="points">
+          <li>🚀 Same-day starts</li>
+          <li>🛠️ Ongoing support</li>
+          <li>💬 Hindi + English</li>
+        </ul>
+      </div>
+      <div class="hero-art">
+        <!-- simple inline illustration -->
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" role="img" aria-label="Illustration">
+          <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4f8cff"/><stop offset="1" stop-color="#9c7bff"/></linearGradient></defs>
+          <rect width="600" height="400" rx="24" fill="#0a0d14"/>
+          <g opacity=".25"><circle cx="120" cy="80" r="60" fill="url(#g)"/><circle cx="520" cy="320" r="80" fill="url(#g)"/></g>
+          <rect x="80" y="140" width="440" height="120" rx="16" fill="#121826" stroke="#232838"/>
+          <rect x="110" y="170" width="180" height="20" rx="6" fill="#4f8cff"/>
+          <rect x="110" y="200" width="260" height="16" rx="6" fill="#2a3350"/>
+        </svg>
+      </div>
+    </section>
+
+    <section id="services" class="section">
+      <h2>Services</h2>
+      <div class="grid cards">
+        <article class="card">
+          <h3>Business Website</h3>
+          <p>Modern, mobile-friendly one-page or multi-page website. Hosting & domain guidance included.</p>
+          <ul>
+            <li>Responsive design</li>
+            <li>Contact & WhatsApp CTA</li>
+            <li>Basic SEO setup</li>
+          </ul>
+          <div class="price">From ₹4,999</div>
+        </article>
+        <article class="card">
+          <h3>E-Commerce Setup</h3>
+          <p>Simple product catalog with payment integration using trusted providers.</p>
+          <ul>
+            <li>Razorpay/Stripe ready</li>
+            <li>Product management</li>
+            <li>Order notifications</li>
+          </ul>
+          <div class="price">From ₹9,999</div>
+        </article>
+        <article class="card">
+          <h3>Tech Support</h3>
+          <p>PC/Mobile troubleshooting, backups, and speed-ups with remote assistance.</p>
+          <ul>
+            <li>Windows & Android help</li>
+            <li>Data safety first</li>
+            <li>Hourly or fixed</li>
+          </ul>
+          <div class="price">From ₹799</div>
+        </article>
+      </div>
+    </section>
+
+    <section id="work" class="section alt">
+      <h2>Recent Work</h2>
+      <div class="grid gallery">
+        <figure>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 380" role="img" aria-label="Project preview">
+            <rect width="600" height="380" fill="#0a0d14"/>
+            <rect x="40" y="40" width="520" height="80" rx="12" fill="#121826" stroke="#232838"/>
+            <rect x="60" y="70" width="200" height="20" rx="6" fill="#4f8cff"/>
+            <rect x="40" y="140" width="520" height="200" rx="12" fill="#121826" stroke="#232838"/>
+          </svg>
+          <figcaption>Landing page for a local service</figcaption>
+        </figure>
+        <figure>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 380" role="img" aria-label="Project preview">
+            <rect width="600" height="380" fill="#0a0d14"/>
+            <rect x="40" y="40" width="160" height="160" rx="12" fill="#121826" stroke="#232838"/>
+            <rect x="220" y="40" width="340" height="80" rx="12" fill="#121826" stroke="#232838"/>
+            <rect x="220" y="140" width="340" height="60" rx="12" fill="#121826" stroke="#232838"/>
+          </svg>
+          <figcaption>E-commerce mini-store</figcaption>
+        </figure>
+        <figure>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 380" role="img" aria-label="Project preview">
+            <rect width="600" height="380" fill="#0a0d14"/>
+            <rect x="60" y="60" width="480" height="80" rx="12" fill="#121826" stroke="#232838"/>
+            <rect x="60" y="160" width="480" height="160" rx="12" fill="#121826" stroke="#232838"/>
+          </svg>
+          <figcaption>Portfolio website</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <h2>About</h2>
+      <div class="about-wrap">
+        <div class="avatar" aria-hidden="true"></div>
+        <p>Hi, I’m <strong>Ravi Dhakad</strong>. I build practical digital solutions — no over-engineering, just clean and reliable work. I value quick communication and long-term support.</p>
+      </div>
+      <ul class="badges">
+        <li>✅ On-time delivery</li>
+        <li>🔒 Privacy first</li>
+        <li>🧾 Simple invoices</li>
+      </ul>
+    </section>
+
+    <section id="contact" class="section contact">
+      <h2>Contact</h2>
+      <div class="contact-wrap">
+        <form action="https://formspree.io/f/your-id" method="POST">
+          <div class="row">
+            <label>
+              Name
+              <input type="text" name="name" required placeholder="Your name" />
+            </label>
+            <label>
+              Phone / WhatsApp
+              <input type="tel" name="phone" required placeholder="+919977692271" />
+            </label>
+          </div>
+          <label>
+            What do you need?
+            <textarea name="message" rows="5" required placeholder="Briefly describe your work"></textarea>
+          </label>
+          <button class="btn primary" type="submit">Send Message</button>
+          <p class="muted">Or message directly on <a href="https://wa.me/919999999999" target="_blank" rel="noopener">WhatsApp</a>.</p>
+        </form>
+        <div class="contact-card card">
+          <h3>Quick Info</h3>
+          <ul>
+            <li><strong>Location:</strong> India (IST)</li>
+            <li><strong>Email:</strong> sarkhoravi@gmai.com</li>
+            <li><strong>Hours:</strong> 10:00 – 19:00 IST</li>
+          </ul>
+          <a class="btn ghost" href="mailto:you@example.com">Email me</a>
         </div>
-        
-        <!-- Right Sidebar -->
-        <div class="right-sidebar">
-            <div class="contacts-header">
-                <h3>Contacts</h3>
-                <div>
-                    <i class="fas fa-video"></i>
-                    <i class="fas fa-search"></i>
-                    <i class="fas fa-ellipsis-h"></i>
-                </div>
-            </div>
-            
-            <div class="contact">
-                <div class="avatar-container">
-                    <img src="https://randomuser.me/api/portraits/women/12.jpg" alt="Profile">
-                    <div class="online-badge"></div>
-                </div>
-                <span>Emily Davis</span>
-            </div>
-            
-            <div class="contact">
-                <div class="avatar-container">
-                    <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Profile">
-                    <div class="online-badge"></div>
-                </div>
-                <span>Robert Wilson</span>
-            </div>
-            
-            <div class="contact">
-                <div class="avatar-container">
-                    <img src="https://randomuser.me/api/portraits/women/33.jpg" alt="Profile">
-                </div>
-                <span>Jennifer Brown</span>
-            </div>
-            
-            <div class="contact">
-                <div class="avatar-container">
-                    <img src="https://randomuser.me/api/portraits/men/67.jpg" alt="Profile">
-                    <div class="online-badge"></div>
-                </div>
-                <span>David Miller</span>
-            </div>
-            
-            <div class="contact">
-                <div class="avatar-container">
-                    <img src="https://randomuser.me/api/portraits/women/55.jpg" alt="Profile">
-                </div>
-                <span>Jessica Garcia</span>
-            </div>
-        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> Ravi Dhakad • All rights reserved.</p>
+    <div class="socials">
+      <a href="#" aria-label="Instagram">IG</a>
+      <a href="#" aria-label="GitHub">GH</a>
+      <a href="#" aria-label="LinkedIn">IN</a>
     </div>
-    
-    <script>
-        // Simple JavaScript for demonstration
-        document.querySelectorAll('.post-action').forEach(action => {
-            action.addEventListener('click', function() {
-                const actionType = this.querySelector('span').textContent;
-                alert(`You clicked ${actionType}`);
-            });
-        });
-        
-        document.querySelectorAll('.post-option').forEach(option => {
-            option.addEventListener('click', function() {
-                const optionType = this.querySelector('span').textContent;
-                alert(`Create post with ${optionType}`);
-            });
-        });
-    </script>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
